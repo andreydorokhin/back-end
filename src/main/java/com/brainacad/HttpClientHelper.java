@@ -4,21 +4,33 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.apache.http.protocol.HTTP.USER_AGENT;
 
 public class HttpClientHelper {
 
-    public static HttpResponse get(String endpointUrl, String parameters){
+    public static HttpResponse get(String endpointUrl, String parameters) throws IOException {
        //TODO: написать метод для GET запроса с хедерами по умолчанию
-       return null;
+
+        //Создаём переменую headers типа Map
+        Map<String, String> headers=new HashMap<>();
+        //Добавляем в headers наш заголовок
+        headers.put("User-Agent", "My-Test-User-Agent");
+
+        //выполняем запрос в HTTP клиенте и получаем ответ
+        HttpResponse response = get(endpointUrl, parameters, headers);
+
+        //возвращаем response
+        return response;
     }
 
     //REST GET запрос
@@ -41,9 +53,19 @@ public class HttpClientHelper {
     }
 
 
-    public static HttpResponse post(String endpointUrl, String parameters){
+    public static HttpResponse post(String endpointUrl, String parameters) throws IOException {
         //TODO: написать метод для POST запроса с хедерами по умолчанию
-        return null;
+
+        //Создаём переменую headers типа Map
+        Map<String, String> headers=new HashMap<>();
+        //Добавляем в headers наш заголовок
+        headers.put("User-Agent", "My-Test-User-Agent");
+
+        //выполняем запрос в HTTP клиенте и получаем ответ
+        HttpResponse response = post(endpointUrl, parameters, headers);
+
+        //возвращаем response
+        return response;
     }
 
     public static HttpResponse post(String endpointUrl, String body, Map<String, String> headers) throws IOException{
@@ -84,4 +106,22 @@ public class HttpClientHelper {
     }
 
     //TODO: допишите методы для запросов PUT, PATCH и DELETE
+    //REST GET запрос
+//    public static HttpResponse put(String endpointUrl, String parameters, Map<String, String> headers) throws IOException {
+//        //Создаём экземпляр HTTP клиента
+//        HttpClient client = HttpClientBuilder.create().build();
+//        //Создаём HTTP PUT запрос из URL и параметров
+//        HttpPut request = //new HttpGet(endpointUrl+"?"+parameters);
+//
+//        //добавляем в запрос необходимые хедеры
+//        for(String headerKey:headers.keySet()) {
+//            request.addHeader(headerKey, headers.get(headerKey));
+//        }
+//
+//        //выполняем запрос в HTTP клиенте и получаем ответ
+//        HttpResponse response = client.execute(request);
+//
+//        //возвращаем response
+//        return response;
+//    }
 }
