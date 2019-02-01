@@ -14,7 +14,7 @@ public class RestTest{
 
     private static final String URL="https://reqres.in/";
 
-    @Test//GET метод
+    @Test//GET метод StatusCode endpoint="/api/users" "page=2"
     public void checkGetResponseStatusCode() throws IOException {
         String endpoint="/api/users";
 
@@ -36,7 +36,7 @@ public class RestTest{
         Assert.assertEquals("Response status code should be 200", 200, statusCode);
     }
 
-    @Test//GET метод
+    @Test//GET метод BodyNotNull endpoint="/api/users" "page=2"
     public void checkGetResponseBodyNotNull() throws IOException {
         String endpoint="/api/users";
 
@@ -59,7 +59,7 @@ public class RestTest{
         Assert.assertNotEquals("Body shouldn't be null", null, body);
     }
 
-    @Test//POST метод
+    @Test//POST метод StatusCode endpoint="/api/users" requestBody="{\"name\": \"morpheus\",\"job\": \"leader\"}"
     public void checkPostResponseStatusCode() throws IOException {
         String endpoint="/api/users";
 
@@ -85,7 +85,7 @@ public class RestTest{
         Assert.assertEquals("Response status code should be 201", 201, statusCode);
     }
 
-    @Test//POST метод
+    @Test//POST метод BodyNotNull endpoint="/api/users" requestBody="{\"name\": \"morpheus\",\"job\": \"leader\"}"
     public void checkPostResponseBodyNotNull() throws IOException {
         String endpoint="/api/users";
 
@@ -114,7 +114,7 @@ public class RestTest{
     //TODO: напишите по тесткейсу на каждый вариант запроса на сайте https://reqres.in
     //TODO: в тескейсах проверьте Result Code и несколько параметров из JSON ответа (если он есть)
 
-    @Test//GET метод
+    @Test//GET метод SingleUser endpoint="/api/users/2" jsonPath="$.data.first_name"
     public void checkGetResponseSingleUser() throws IOException {
         String endpoint="/api/users/2";
 
@@ -134,7 +134,7 @@ public class RestTest{
         Assert.assertEquals("Response status code should be 200", 200, statusCode);
     }
 
-    @Test//GET метод
+    @Test//GET метод SingleUserNotFound endpoint="/api/users/23"
     public void checkGetResponseSingleUserNotFound() throws IOException {
         String endpoint="/api/users/23";
 
@@ -152,7 +152,7 @@ public class RestTest{
         Assert.assertEquals("Response status code should be 404", 404, statusCode);
     }
 
-    @Test//GET метод
+    @Test//GET метод ListResource endpoint="/api/unknown" jsonPath="$.data[*].color"
     public void checkGetResponseListResource() throws IOException {
         String endpoint="/api/unknown";
 
@@ -178,7 +178,7 @@ public class RestTest{
         Assert.assertEquals("Response status code should be 200", 200, statusCode);
     }
 
-    @Test//GET метод
+    @Test//GET метод SingleResourse endpoint="/api/unknown/2" jsonPath="$.data.color"
     public void checkGetResponseSingleResourse() throws IOException {
         String endpoint="/api/unknown/2";
 
